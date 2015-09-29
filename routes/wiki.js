@@ -17,16 +17,23 @@ router.post('/', function(req, res, next) {
     content: req.body.pageContent,
     status: req.body.pageStatus
   });
-
   page.save()
-    .then(function(elem) {
-      res.redirect('/wiki/add');
+    .then(function(page) {
+      res.redirect(page.route);
     });
 });
 //GET add-page
 router.get('/add', function(req, res) {
   res.render('addpage');
+});
 
+router.get('/:urlTitle', function(req, res, next) {
+  var urlTitle = req.params.urlTitle;
+  var query = Page.findOne({urlTitle:urlTitle}).exec()
+  .then(function(page) {
+    res.locals.page = page;
+    res.render('wikipage');
+  });
 });
 
 module.exports = router;

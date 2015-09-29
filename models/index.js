@@ -12,7 +12,8 @@ var pageSchema = new mongoose.Schema({
   content:  {type: String, required: true},
   status:   {type: String, enum: ['open', 'closed']},
   date:     {type: Date, default: Date.now},
-  author:   {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  author:   {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  tags:     {type: [String]}
 });
 
 var userSchema = new mongoose.Schema({
@@ -24,6 +25,15 @@ pageSchema.virtual('route').get(function() {
   return '/wiki/' + this.urlTitle;
 });
 
+pageSchema.pre('validate', function(next) {
+  this.urlTitle = urlTitleConverter(this.title);
+  next();
+});
+
+function urlTitleConverter(title) {
+  title = title.replace(/\s+/g, '_');
+  return title.replace(/\W/g, '');
+}
 
 var Page = mongoose.model('Page', pageSchema);
 var User = mongoose.model('User', userSchema);

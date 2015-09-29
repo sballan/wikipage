@@ -3,7 +3,7 @@
 {% block content %}
   <h3>Add a Page</h3>
   <hr>
-  <form method="POST" action="/wiki/">
+  <form method="POST" action="/wiki">
 
     <div class="form-group">
       <label for="authorName" class="col-sm-2 control-label">Author Name</label>
@@ -36,7 +36,8 @@
     <div class="form-group">
       <label for="pageStatus" class="col-sm-2 control-label">Page Status</label>
       <div class="col-sm-10">
-        <input name="pageStatus" type="text" class="form-control"/>
+        <input name="pageStatus" type="radio" class="form-control" value="open" checked/>open
+        <input name="pageStatus" type="radio" class="form-control" value="closed"/>closed
       </div>
     </div>
 
