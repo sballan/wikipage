@@ -8,12 +8,13 @@ var swig = require('swig');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var wiki = require('./routes/wiki');
 
 var app = express();
 
 
 // View Engine Setup
-app.set('view', __dirname + '/views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.engine('html', swig.renderFile);
 swig.setDefaults({cache: false});
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/wiki', wiki);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,5 +62,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+app.listen(3000);
 module.exports = app;
