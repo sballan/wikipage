@@ -3,9 +3,9 @@
 {% block content %}
   <h3>Add a Page</h3>
   <hr>
-  <form method="POST" action="/wiki">
+  <form method="GET" action="/search">
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="authorName" class="col-sm-2 control-label">Author Name</label>
       <div class="col-sm-10">
         <input name="authorName" type="text" class="form-control"/>
@@ -31,7 +31,7 @@
       <div class="col-sm-10">
         <input name="pageContent" type="textarea" class="form-control"/>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label for="tags" class="col-sm-2 control-label">Tags</label>
@@ -40,13 +40,13 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="pageStatus" class="col-sm-2 control-label">Page Status</label>
       <div class="col-sm-10">
         <input name="pageStatus" type="radio" class="form-control" value="open" checked/>open
         <input name="pageStatus" type="radio" class="form-control" value="closed"/>closed
       </div>
-    </div>
+    </div> -->
 
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-primary">submit</button>

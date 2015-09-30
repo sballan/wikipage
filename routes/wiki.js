@@ -15,7 +15,8 @@ router.post('/', function(req, res, next) {
   var page = new Page({
     title: req.body.title,
     content: req.body.pageContent,
-    status: req.body.pageStatus
+    status: req.body.pageStatus,
+    tags: req.body.tags.split(' ')
   });
   page.save()
     .then(function(page) {
@@ -34,6 +35,11 @@ router.get('/:urlTitle', function(req, res, next) {
     res.locals.page = page;
     res.render('wikipage');
   });
+});
+
+router.get('/search', function(req, res, next) {
+
+  res.render('searchpage');
 });
 
 module.exports = router;

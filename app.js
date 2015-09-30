@@ -9,6 +9,7 @@ var swig = require('swig');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var wiki = require('./routes/wiki');
+var search = require('./routes/search');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/wiki', wiki);
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

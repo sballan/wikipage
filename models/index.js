@@ -30,6 +30,12 @@ pageSchema.pre('validate', function(next) {
   next();
 });
 
+pageSchema.statics.findByTag = function(tags) {
+  return this.find({
+    tags: {$in: tags}
+  });
+};
+
 function urlTitleConverter(title) {
   title = title.replace(/\s+/g, '_');
   return title.replace(/\W/g, '');
