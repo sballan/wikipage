@@ -37,9 +37,15 @@ router.get('/:urlTitle', function(req, res, next) {
   });
 });
 
-router.get('/search', function(req, res, next) {
-
-  res.render('searchpage');
+router.get('/:title/similar', function(req, res, next) {
+  Page.findOne({urlTitle: req.params.title}).exec()
+  .then(function(page) {
+    if (page) return page.findSimilar();
+  })
+  .then(function(pages) {
+    res.locals.pages = pages;
+    res.render('index');
+  });
 });
 
 module.exports = router;

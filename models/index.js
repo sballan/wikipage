@@ -36,6 +36,14 @@ pageSchema.statics.findByTag = function(tags) {
   });
 };
 
+pageSchema.methods.findSimilar = function () {
+  return Page.find({$and:
+    [
+      {tags: {$in: this.tags}},
+      {_id: {$ne: this._id}}
+    ]}).exec();
+};
+
 function urlTitleConverter(title) {
   title = title.replace(/\s+/g, '_');
   return title.replace(/\W/g, '');
